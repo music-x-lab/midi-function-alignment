@@ -1,9 +1,6 @@
 # Versatile Symbolic Music-for-Music Modeling via Function Alignment
 
-## [DEMO PAGE](https://music-x-lab.github.io/midi-function-alignment-demo/)
-
-
-## THIS PAGE IS STILL UNDER CONSTRUCTION. PLEASE CHECK BACK LATER.
+## [\[Demo Page\]](https://music-x-lab.github.io/midi-function-alignment-demo/) [\[Paper\]](https://arxiv.org/abs/2506.15548) [\[Pretrained Models\]](https://drive.google.com/drive/folders/1E_gzGgc4Pzd-jpMxOaLEewuvZ35l3jeU?usp=sharing)  [\[Uncurated Demos\]](https://github.com/music-x-lab/midi-function-alignment/tree/main/uncurated_demos)
 
 Welcome to the official repo for the ISMIR 2025 Paper [Versatile Symbolic Music-for-Music Modeling via Function Alignment](https://arxiv.org/abs/2506.15548)!
 
@@ -55,7 +52,19 @@ Download the models and put them in the ``ckpt/`` folder. Keep the subfolder str
 
 You must download the foundation model to use other models.
 
-# Downstream Models
+# Installation
+
+1. Download the pretrained models as mentioned above.
+2. Clone the repository and install the required packages:
+
+```bash
+conda create -n function-alignment python=3.13.2
+conda activate function-alignment
+pip install torch==2.7.1 --index-url https://download.pytorch.org/whl/cu126
+pip install -r requirements.txt
+```
+
+# Inference Using Downstream Models
 
 To use a downstream model, call the ``cp_transformer_yinyang_inference.py`` script. For example:
 
@@ -63,9 +72,11 @@ To use a downstream model, call the ``cp_transformer_yinyang_inference.py`` scri
 python cp_transformer_yinyang_inference.py ckpt/mel_to_chord/cp_transformer_yinyang_v5.1_lora_batch_8_nottingham_cp8_v2_chord_mel_rev_mask0.0-10-step1.epoch=last.ckpt
 ```
 
+For the best result, use the model with ``prompt_lora`` name (for our self-attentive adapters). ``yinyang`` refers to the cross-attention adapters. Other models are baseline models.
+
 The examples (input MIDI files and config) for each model is hardcoded in the ``cp_transformer_yinyang_inference.py`` file.
 
-# Foundation Model
+# Inference Using Foundation Model
 
 The foundation model is a Roformer model trained on 16th-note quantized MIDI sequences.
 
@@ -89,7 +100,7 @@ Though this work does not use function alignment, it is still a music-for-music 
 
 ## Other Future Works
 
-We are currently working on function alignment for more tasks, as well as a better foundation model for symbolic music.
+We are currently working on function alignment for more tasks and cross-modality alignment, as well as a better foundation model for symbolic music.
 
 If you are interested in helping us, please feel free to contact us at jj2731@nyu.edu.
 

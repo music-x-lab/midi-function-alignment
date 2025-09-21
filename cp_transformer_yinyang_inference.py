@@ -82,7 +82,7 @@ def cond_continuation(model, midi_path, prompt_length=100, generation_length=384
     folder = f'prompt{prompt_length}_{model.save_name}'
     ins_ids_str = ','.join(ins_ids)
     file_name_pattern = f'temp/{folder}/{os.path.basename(midi_path)}_temp{temperature}_continuation_%d[{ins_ids_str}].mid'
-    if os.path.exists(file_name_pattern % (n_samples - 1)) and:
+    if os.path.exists(file_name_pattern % (n_samples - 1)):
         print(f'Already exists: {file_name_pattern % (n_samples - 1)}')
         return
     x1, x2 = decompress(model, preprocess_midi(midi_path, 16, ins_ids=ins_ids, filter=False, fixed_length=generation_length)[0])
